@@ -34,6 +34,18 @@ public interface Storage {
 
     /**
      * 
+     * @param goal
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateGoal", targetNamespace = "http://ws.soap.storageservice.lifecoach/", className = "lifecoach.storageservice.soap.ws.UpdateGoal")
+    @ResponseWrapper(localName = "updateGoalResponse", targetNamespace = "http://ws.soap.storageservice.lifecoach/", className = "lifecoach.storageservice.soap.ws.UpdateGoalResponse")
+    @Action(input = "http://ws.soap.storageservice.lifecoach/Storage/updateGoalRequest", output = "http://ws.soap.storageservice.lifecoach/Storage/updateGoalResponse")
+    public void updateGoal(
+        @WebParam(name = "goal", targetNamespace = "", mode = WebParam.Mode.INOUT)
+        Holder<Goal> goal);
+
+    /**
+     * 
      * @param personId
      * @return
      *     returns java.util.List<lifecoach.localdb.soap.ws.Goal>
@@ -61,18 +73,6 @@ public interface Storage {
     public Goal readGoal(
         @WebParam(name = "goalId", targetNamespace = "")
         long goalId);
-
-    /**
-     * 
-     * @param goal
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateGoal", targetNamespace = "http://ws.soap.storageservice.lifecoach/", className = "lifecoach.storageservice.soap.ws.UpdateGoal")
-    @ResponseWrapper(localName = "updateGoalResponse", targetNamespace = "http://ws.soap.storageservice.lifecoach/", className = "lifecoach.storageservice.soap.ws.UpdateGoalResponse")
-    @Action(input = "http://ws.soap.storageservice.lifecoach/Storage/updateGoalRequest", output = "http://ws.soap.storageservice.lifecoach/Storage/updateGoalResponse")
-    public void updateGoal(
-        @WebParam(name = "goal", targetNamespace = "", mode = WebParam.Mode.INOUT)
-        Holder<Goal> goal);
 
     /**
      * 
