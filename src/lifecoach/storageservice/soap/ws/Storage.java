@@ -77,6 +77,7 @@ public interface Storage {
     /**
      * 
      * @param goal
+     * @param personId
      * @return
      *     returns lifecoach.localdb.soap.ws.Goal
      */
@@ -87,7 +88,9 @@ public interface Storage {
     @Action(input = "http://ws.soap.storageservice.lifecoach/Storage/createGoalRequest", output = "http://ws.soap.storageservice.lifecoach/Storage/createGoalResponse")
     public Goal createGoal(
         @WebParam(name = "Goal", targetNamespace = "")
-        Goal goal);
+        Goal goal,
+        @WebParam(name = "personId", targetNamespace = "")
+        long personId);
 
     /**
      * 
@@ -146,6 +149,7 @@ public interface Storage {
     /**
      * 
      * @param achievement
+     * @param personId
      * @return
      *     returns lifecoach.localdb.soap.ws.Achievement
      */
@@ -156,7 +160,9 @@ public interface Storage {
     @Action(input = "http://ws.soap.storageservice.lifecoach/Storage/createAchievementRequest", output = "http://ws.soap.storageservice.lifecoach/Storage/createAchievementResponse")
     public Achievement createAchievement(
         @WebParam(name = "Achievement", targetNamespace = "")
-        Achievement achievement);
+        Achievement achievement,
+        @WebParam(name = "personId", targetNamespace = "")
+        long personId);
 
     /**
      * 

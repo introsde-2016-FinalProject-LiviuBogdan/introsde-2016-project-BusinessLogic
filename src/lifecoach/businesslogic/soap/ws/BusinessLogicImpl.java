@@ -73,7 +73,7 @@ public class BusinessLogicImpl implements BusinessLogic {
     			if(newValue - previousValue > 0){
     				//beat the goal
     				if(newValue >= goalValue){
-    					feedback = this.completeAchievement(feedback, storage, goal, newMeasure);
+    					feedback = this.completeAchievement(feedback, storage, goal, newMeasure, personId);
     				//did not beat the goal but progressing
     				} else {
         				feedback.setMessage("You are getting closer to your goal "
@@ -95,7 +95,7 @@ public class BusinessLogicImpl implements BusinessLogic {
     			if(newValue - previousValue < 0){
     				//Goal reached?
     				if(newValue <= goalValue){
-    					feedback = this.completeAchievement(feedback, storage, goal, newMeasure);
+    					feedback = this.completeAchievement(feedback, storage, goal, newMeasure, personId);
     				//Goal not reached but still progressing
     				} else {
         				feedback.setMessage("You are getting closer to your goal "
@@ -117,7 +117,7 @@ public class BusinessLogicImpl implements BusinessLogic {
     		double goalValue = Double.valueOf(goal.getValue());
     		//if goal achieved complete achievement
         	if(newValue == goalValue){
-				feedback = this.completeAchievement(feedback, storage, goal, newMeasure);
+				feedback = this.completeAchievement(feedback, storage, goal, newMeasure, personId);
     		}
         }
         //No goal set of this type
@@ -135,7 +135,7 @@ public class BusinessLogicImpl implements BusinessLogic {
 	//deletes completed goal from goal list
 	//adds it to achievement
 	//updates the feedback structure with correct picture and message
-	private Feedback completeAchievement(Feedback feedback, Storage storage, Goal goal, Measure newMeasure){
+	private Feedback completeAchievement(Feedback feedback, Storage storage, Goal goal, Measure newMeasure, long personId){
 		feedback.setMessage("You have completed your goal "
 				+goal.getMeasureDefinition().getMeasureType()+" --> " 
 				+ goal.getValue()
@@ -148,7 +148,7 @@ public class BusinessLogicImpl implements BusinessLogic {
 		Achievement completed = new Achievement();
 		completed.setValue(newMeasure.getMeasureValue());
 		completed.setMeasureDefinition(newMeasure.getMeasureDefinition());
-		storage.createAchievement(completed);
+		storage.createAchievement(completed, personId);
 		
 		return feedback;
 	}

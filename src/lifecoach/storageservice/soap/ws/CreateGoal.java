@@ -19,6 +19,7 @@ import lifecoach.localdb.soap.ws.Goal;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Goal" type="{http://ws.soap.localdb.lifecoach/}goal" minOccurs="0"/>
+ *         &lt;element name="personId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,12 +30,14 @@ import lifecoach.localdb.soap.ws.Goal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createGoal", propOrder = {
-    "goal"
+    "goal",
+    "personId"
 })
 public class CreateGoal {
 
     @XmlElement(name = "Goal")
     protected Goal goal;
+    protected long personId;
 
     /**
      * Gets the value of the goal property.
@@ -58,6 +61,22 @@ public class CreateGoal {
      */
     public void setGoal(Goal value) {
         this.goal = value;
+    }
+
+    /**
+     * Gets the value of the personId property.
+     * 
+     */
+    public long getPersonId() {
+        return personId;
+    }
+
+    /**
+     * Sets the value of the personId property.
+     * 
+     */
+    public void setPersonId(long value) {
+        this.personId = value;
     }
 
 }
