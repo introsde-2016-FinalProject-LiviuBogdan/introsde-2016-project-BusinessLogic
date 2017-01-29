@@ -19,6 +19,6 @@ public interface BusinessLogic {
 
     @WebMethod(operationName="savePersonMeasure")
     @WebResult(name="person") 
-    public String savePersonMeasure(@WebParam(name="personId") long id, @WebParam(name="measure") Measure newMeasure);
+    public Feedback savePersonMeasure(@WebParam(name="personId") long id, @WebParam(name="measure") Measure newMeasure);
 
 }
